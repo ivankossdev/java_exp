@@ -3,7 +3,7 @@ import serial
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QMainWindow
 from clock_setting import *
-from thread_func import TimeHandler, STM_Board_Ports
+from thread_func import TimeHandler, STM_Board_Ports, STM_Read_Port
 
 
 class Clock(QMainWindow, Ui_Form):
@@ -17,7 +17,8 @@ class Clock(QMainWindow, Ui_Form):
         self.buttonMinuteDown.clicked.connect(self.press_minute_down)
         self.buttonSecondUp.clicked.connect(self.press_second_up)
         self.buttonSecondDown.clicked.connect(self.press_second_down)
-        self.buttonConnect.clicked.connect(self.connect)
+        self.buttonConnect.clicked.connect(self.press_connect)
+        self.com = STM_Read_Port(self)
         self.tmh = TimeHandler(self)
         self.ports = STM_Board_Ports(self)
         self.start_prin_time_now()
@@ -46,13 +47,13 @@ class Clock(QMainWindow, Ui_Form):
         self.tmh.signal.disconnect()
         self.ports.signal.disconnect()
 
-    def connect(self):
+    def press_connect(self):
         self.buttonConnect.setDisabled(True)
         self.comPortBox.setDisabled(True)
-        com = serial.Serial(self.comPortBox.currentText())
         self.tmh.signal.disconnect()
-        self.timeDisplay.setPlaceholderText(com.read(8).decode())
-        com.close()
+        self.com.port = self.comPortBox.currentText()
+        self.com.signal.connect(self.print_time_now)
+        self.com.start()
 
     def press_hour_up(self):
         self.timeDisplay.clear()

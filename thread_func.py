@@ -44,9 +44,21 @@ class STM_Board_Ports(QThread):
                 break
             QThread.sleep(1)
 
+
 class STM_Read_Port(QThread):
-    signal = PyQt5.QtCore.pyqtSignal(list)
+    signal = PyQt5.QtCore.pyqtSignal(str)
 
     def __init__(self, parent=QMainWindow):
         super(STM_Read_Port, self).__init__(parent)
+        self._open_port = None
+        self.port = None
+
+    def run(self):
+        self._open_port = serial.Serial(self.port)
+        while True:
+            self.signal.emit(self._open_port.read(8).decode())
+            QThread.sleep(1)
+
+    def close_port(self):
+        self._open_port.close()
 
