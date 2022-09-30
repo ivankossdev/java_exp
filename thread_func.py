@@ -57,6 +57,7 @@ class STM_Read_Port(QThread):
         self._open_port = serial.Serial(self.port)
         while True:
             self.signal.emit(self._open_port.read(8).decode())
+            self._open_port.reset_input_buffer()
             QThread.sleep(1)
 
     def close_port(self):
