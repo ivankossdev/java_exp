@@ -56,8 +56,11 @@ class STM_Read_Port(QThread):
     def run(self):
         self._open_port = serial.Serial(self.port)
         while True:
-            self.signal.emit(self._open_port.read(8).decode())
+            self.signal.emit(self._open_port.read(9).decode())
             self._open_port.reset_input_buffer()
+
+    def write(self, message):
+        self._open_port.write(message.encode())
 
     def close_port(self):
         self.signal.disconnect()

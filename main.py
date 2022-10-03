@@ -63,6 +63,7 @@ class Clock(QMainWindow, Ui_Form):
             self.buttonConnect.setEnabled(True)
             self.comPortBox.setEnabled(True)
             self.com.signal.disconnect()
+            self.com.write("1")
             self.start_prin_time_now()
             self.connected = False
 
