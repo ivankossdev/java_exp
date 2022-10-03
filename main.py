@@ -18,6 +18,8 @@ class Clock(QMainWindow, Ui_Form):
         self.buttonSecondUp.clicked.connect(self.press_second_up)
         self.buttonSecondDown.clicked.connect(self.press_second_down)
         self.buttonConnect.clicked.connect(self.press_connect)
+        self.buttonAply.clicked.connect(self.press_aply)
+        self.connected = False
         self.com = STM_Read_Port(self)
         self.tmh = TimeHandler(self)
         self.ports = STM_Board_Ports(self)
@@ -48,12 +50,21 @@ class Clock(QMainWindow, Ui_Form):
         self.ports.signal.disconnect()
 
     def press_connect(self):
+        self.connected = True
         self.buttonConnect.setDisabled(True)
         self.comPortBox.setDisabled(True)
         self.tmh.signal.disconnect()
         self.com.port = self.comPortBox.currentText()
         self.com.signal.connect(self.print_time_now)
         self.com.start()
+
+    def press_aply(self):
+        if self.connected:
+            self.buttonConnect.setEnabled(True)
+            self.comPortBox.setEnabled(True)
+            self.com.signal.disconnect()
+            self.start_prin_time_now()
+            self.connected = False
 
     def press_hour_up(self):
         self.timeDisplay.clear()
