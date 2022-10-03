@@ -5,20 +5,19 @@ from PyQt5.QtWidgets import QMainWindow
 from clock_setting import *
 from thread_func import TimeHandler, STM_Board_Ports, STM_Read_Port
 
+# pyuic5  clock_setting.ui -o clock_setting.py
 
 class Clock(QMainWindow, Ui_Form):
 
     def __init__(self):
         super(Clock, self).__init__()
         self.setupUi(self)
-        self.buttonHourUp.clicked.connect(self.press_hour_up)
-        self.buttonHourDown.clicked.connect(self.press_hour_down)
-        self.buttonMinuteUp.clicked.connect(self.press_minute_up)
-        self.buttonMinuteDown.clicked.connect(self.press_minute_down)
-        self.buttonSecondUp.clicked.connect(self.press_second_up)
-        self.buttonSecondDown.clicked.connect(self.press_second_down)
         self.buttonConnect.clicked.connect(self.press_connect)
         self.buttonAply.clicked.connect(self.press_aply)
+        self.buttonLed_1.clicked.connect(self.press_button_led_1)
+        self.buttonLed_2.clicked.connect(self.press_button_led_2)
+        self.buttonLed_3.clicked.connect(self.press_button_led_3)
+        self.buttonLed_4.clicked.connect(self.press_button_led_4)
         self.connected = False
         self.com = STM_Read_Port(self)
         self.tmh = TimeHandler(self)
@@ -32,7 +31,7 @@ class Clock(QMainWindow, Ui_Form):
 
     @pyqtSlot(str)
     def print_time_now(self, t):
-        self.timeDisplay.setPlaceholderText(t)
+        self.timeDisplay.setText(t)
 
     def get_ports(self):
         self.ports.signal.connect(self.set_ports)
@@ -53,7 +52,6 @@ class Clock(QMainWindow, Ui_Form):
         self.connected = True
         self.buttonConnect.setDisabled(True)
         self.comPortBox.setDisabled(True)
-        self.tmh.signal.disconnect()
         self.com.port = self.comPortBox.currentText()
         self.com.signal.connect(self.print_time_now)
         self.com.start()
@@ -63,34 +61,25 @@ class Clock(QMainWindow, Ui_Form):
             self.buttonConnect.setEnabled(True)
             self.comPortBox.setEnabled(True)
             self.com.signal.disconnect()
-            self.com.write("1")
             self.start_prin_time_now()
+            self.com.write(f"t{''.join(str(x) for x in self.timeDisplay.toPlainText().split(':'))}")
             self.connected = False
 
-    def press_hour_up(self):
-        self.timeDisplay.clear()
-        self.timeDisplay.setPlaceholderText("H Up")
+    def press_button_led_1(self):
+        if self.connected:
+            self.com.write("l1;____")
 
-    def press_hour_down(self):
-        self.timeDisplay.clear()
-        self.timeDisplay.setPlaceholderText("H Down")
+    def press_button_led_2(self):
+        if self.connected:
+            self.com.write("l2;____")
 
-    def press_minute_up(self):
-        self.timeDisplay.clear()
-        self.timeDisplay.setPlaceholderText("M Up")
+    def press_button_led_3(self):
+        if self.connected:
+            self.com.write("l3;____")
 
-    def press_minute_down(self):
-        self.timeDisplay.clear()
-        self.timeDisplay.setPlaceholderText("M Down")
-
-    def press_second_up(self):
-        self.timeDisplay.clear()
-        self.timeDisplay.setPlaceholderText("S Up")
-
-    def press_second_down(self):
-        self.timeDisplay.clear()
-        self.timeDisplay.setPlaceholderText("S Down")
-
+    def press_button_led_4(self):
+        if self.connected:
+            self.com.write("l4;____")
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
