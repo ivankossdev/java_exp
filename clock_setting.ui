@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>312</width>
-    <height>120</height>
+    <height>160</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>312</width>
-    <height>120</height>
+    <height>160</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>312</width>
-    <height>180</height>
+    <height>160</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -82,8 +82,8 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>90</y>
-     <width>75</width>
+     <y>70</y>
+     <width>71</width>
      <height>23</height>
     </rect>
    </property>
@@ -91,57 +91,83 @@
     <string>aply</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="buttonLed_1">
+  <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>90</y>
-     <width>41</width>
-     <height>23</height>
+     <width>291</width>
+     <height>61</height>
     </rect>
    </property>
-   <property name="text">
-    <string>led 1</string>
+   <property name="title">
+    <string>Led Control</string>
    </property>
-  </widget>
-  <widget class="QPushButton" name="buttonLed_2">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>90</y>
-     <width>41</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>led 2</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="buttonLed_3">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>90</y>
-     <width>41</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>led 3</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="buttonLed_4">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>90</y>
-     <width>41</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>led 4</string>
-   </property>
+   <widget class="QPushButton" name="buttonLed_1">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>41</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>led 1</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonLed_2">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>20</y>
+      <width>41</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>led 2</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonLed_3">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>20</y>
+      <width>41</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>led 3</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonLed_4">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>20</y>
+      <width>41</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>led 4</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonLed_Off">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>20</y>
+      <width>71</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>led off</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

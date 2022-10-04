@@ -18,6 +18,7 @@ class Clock(QMainWindow, Ui_Form):
         self.buttonLed_2.clicked.connect(self.press_button_led_2)
         self.buttonLed_3.clicked.connect(self.press_button_led_3)
         self.buttonLed_4.clicked.connect(self.press_button_led_4)
+        self.buttonLed_Off.clicked.connect(self.press_button_led_off)
         self.connected = False
         self.com = STM_Read_Port(self)
         self.tmh = TimeHandler(self)
@@ -80,6 +81,10 @@ class Clock(QMainWindow, Ui_Form):
     def press_button_led_4(self):
         if self.connected:
             self.com.write("l4;____")
+
+    def press_button_led_off(self):
+        if self.connected:
+            self.com.write("l0;____")
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
