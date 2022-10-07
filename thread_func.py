@@ -12,14 +12,14 @@ class TimeHandler(QThread):
 
     def run(self):
         while True:
-            self.tm = datetime.datetime.now()
-            self.S0 = int(self.tm.second % 10)
-            self.S1 = int(self.tm.second / 10)
-            self.M0 = int(self.tm.minute % 10)
-            self.M1 = int(self.tm.minute / 10)
-            self.H0 = int(self.tm.hour % 10)
-            self.H1 = int(self.tm.hour / 10)
-            self.signal.emit(f'{self.H1}{self.H0}:{self.M1}{self.M0}:{self.S1}{self.S0}')
+            tm = datetime.datetime.now()
+            S0 = int(tm.second % 10)
+            S1 = int(tm.second / 10)
+            M0 = int(tm.minute % 10)
+            M1 = int(tm.minute / 10)
+            H0 = int(tm.hour % 10)
+            H1 = int(tm.hour / 10)
+            self.signal.emit(f'{H1}{H0}:{M1}{M0}:{S1}{S0}')
             QThread.sleep(1)
 
 
