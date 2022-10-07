@@ -75,7 +75,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="buttonAply">
+  <widget class="QPushButton" name="button_SyncTime">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -88,7 +88,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>aply</string>
+    <string>Sync Time</string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
@@ -168,6 +168,22 @@
      <string>led off</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="button_Disconnect">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>40</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Disonnect</string>
+   </property>
   </widget>
  </widget>
  <resources/>
