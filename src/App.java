@@ -1,4 +1,4 @@
-import java_exp.User;
+import ClassUser.User;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -7,13 +7,19 @@ public class App {
         long lng = 15000555L;
         System.out.printf("Example string %s \nLong intger %d\n", str, lng);
         String res = func(2, 10);
+
         System.out.printf("Func result %s\n", res);
         String[] arrayString = new String[3];
+
         setArrayString(arrayString);
         getArrayString(arrayString);
-        User u1 = new User();
-        u1.name = "User 1";
-        System.out.printf("User name %s\n", u1.name);
+
+        User u1 = new User("u1", "u1@u.ru");
+        System.out.printf("Create user %s\ne-mail %s\n", u1.name, u1.e_mail);
+        System.out.printf("User id %d\n", u1.getId());
+
+        User u2 = new User("u2");
+        System.out.printf("Create user %s\n", u2.name);
     }
 
     static String func(int a, int b){
