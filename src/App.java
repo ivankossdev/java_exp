@@ -1,3 +1,5 @@
+import java_exp.User;
+
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, Led!");
@@ -9,6 +11,9 @@ public class App {
         String[] arrayString = new String[3];
         setArrayString(arrayString);
         getArrayString(arrayString);
+        User u1 = new User();
+        u1.name = "User 1";
+        System.out.printf("User name %s\n", u1.name);
     }
 
     static String func(int a, int b){
