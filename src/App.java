@@ -1,4 +1,5 @@
 import ClassUser.User;
+import ClassUser.UserStaticField;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -20,6 +21,12 @@ public class App {
 
         User u2 = new User("u2");
         System.out.printf("Create user %s\n", u2.name);
+
+        UserStaticField usf1 = new UserStaticField("usf1");
+        System.out.printf("Create user %s id = %d\n", usf1.name, usf1.getUserID());
+
+        UserStaticField usf2 = new UserStaticField("usf2");
+        System.out.printf("Create user %s id = %d\n", usf2.name, usf2.getUserID());
     }
 
     static String func(int a, int b){
